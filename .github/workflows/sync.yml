@@ -1,0 +1,46 @@
+name: Auto-Sync LMS Deadlines to Apple Calendar
+
+on:
+  schedule:
+    # Runs every 4 hours (at minute 0)
+    - cron: '0 */4 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run LMS Calendar Sync
+        env:
+          LMS_URL: https://lms.tech.sjp.ac.lk
+          LMS_USERNAME: ${{ secrets.LMS_USERNAME }}
+          LMS_PASSWORD: ${{ secrets.LMS_PASSWORD }}
+          OUTPUT_PATH: dist/deadlines.ics
+          TIMEZONE: Asia/Colombo
+        run: |
+          python sync.py
+
+      - name: Deploy Calendar Feed to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          keep_files: false
+          commit_message: "Automated deadline calendar update [skip ci]"
