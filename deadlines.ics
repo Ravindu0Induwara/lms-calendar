@@ -7,29 +7,8 @@ X-WR-CALNAME:LMS Deadlines
 X-WR-TIMEZONE:Asia/Colombo
 X-WR-CALDESC:Auto-synced academic deadlines from lms.tech.sjp.ac.lk
 BEGIN:VEVENT
-UID:moodle-deadline-9891@lms.tech.sjp.ac.lk
-DTSTAMP:20261117T175654Z
-DTSTART:20261117T183000Z
-DTEND:20261117T183000Z
-SUMMARY:[Industrial] CV - Second Version is due
-DESCRIPTION:Course: Industrial Training - IIC4546 - 2027 (Batch 8)\nSubmission Link: https://lms.tech.sjp.ac.lk/mod/assign/view.php?id=49991\nPlease Rename your CV as this &lt\;Index Name&gt\;_&lt\;Student_Name&gt\; _&lt\;Focus area&gt\;.pdf Ex - ICT/23/801_R.W.C.Madhushika_Software Technology.pdf
-URL:https://lms.tech.sjp.ac.lk/mod/assign/view.php?id=49991
-STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Deadline in 24 hours: [Industrial] CV - Second Version is due
-TRIGGER:-P1D
-END:VALARM
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Deadline in 2 hours: [Industrial] CV - Second Version is due
-TRIGGER:-PT2H
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:moodle-deadline-9877@lms.tech.sjp.ac.lk
-DTSTAMP:20261117T175654Z
+DTSTAMP:20261118T015844Z
 DTSTART:20261118T183000Z
 DTEND:20261118T183000Z
 SUMMARY:[IIC3443] Assignment 2 is due
@@ -50,7 +29,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:moodle-deadline-9860@lms.tech.sjp.ac.lk
-DTSTAMP:20261117T175654Z
+DTSTAMP:20261118T015844Z
 DTSTART:20261129T183000Z
 DTEND:20261129T183000Z
 SUMMARY:[Computer] IIC3433_Computer_Security_Assignment_2026 is due
