@@ -8,7 +8,7 @@ X-WR-TIMEZONE:Asia/Colombo
 X-WR-CALDESC:Auto-synced academic deadlines from lms.tech.sjp.ac.lk
 BEGIN:VEVENT
 UID:moodle-deadline-9860@lms.tech.sjp.ac.lk
-DTSTAMP:20261120T013440Z
+DTSTAMP:20261120T122255Z
 DTSTART:20261129T183000Z
 DTEND:20261129T183000Z
 SUMMARY:[Computer] IIC3433_Computer_Security_Assignment_2026 is due
