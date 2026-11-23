@@ -1,16 +1,16 @@
-name: Auto-Sync LMS Deadlines to Apple Calendar
+name: Auto-Sync LMS Deadlines & Course Material Alerts
 
 on:
   schedule:
-    # Runs every 4 hours (at minute 0)
-    - cron: '0 */4 * * *'
+    # Runs every 2 hours
+    - cron: '0 */2 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 permissions:
   contents: write
 
 jobs:
-  sync:
+  sync_and_monitor:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -36,6 +36,25 @@ jobs:
           TIMEZONE: Asia/Colombo
         run: |
           python sync.py
+
+      - name: Monitor Course Materials & Announcements (Telegram Alerts)
+        env:
+          LMS_URL: https://lms.tech.sjp.ac.lk
+          LMS_USERNAME: ${{ secrets.LMS_USERNAME }}
+          LMS_PASSWORD: ${{ secrets.LMS_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          STATE_FILE: seen_items.json
+        run: |
+          python monitor.py
+
+      - name: Commit & Push State Cache
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add seen_items.json
+          git commit -m "Update LMS state cache [skip ci]" || echo "No state changes to commit"
+          git push origin main || echo "Failed to push state"
 
       - name: Deploy Calendar Feed to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
